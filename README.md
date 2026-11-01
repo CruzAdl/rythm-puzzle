@@ -19,7 +19,7 @@ Once the circle expands to fill the arena (radius >= 50), it turns blue and comp
 There is also a hidden visual rhythm guide toggle located in the 
 <details>
   <summary>Spoiler</summary>
-  bottom-right corner (or press the `H` key).
+  bottom-left corner (or press the `H` key).
 </details>
 
 This project is implemented as an ultra-lightweight, zero-dependency static web application (< 10 KB total), ready to deploy to Netlify immediately.
