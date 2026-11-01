@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puzzle and Rhythm</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Hidden Rhythm Guide Toggle (Bottom Right Corner) -->
+  <label id="hidden-toggle-container" class="hidden-toggle" title="Secret Rhythm Guide Toggle">
+    <input type="checkbox" id="aid_toggle" aria-label="Secret Rhythm Guide Toggle">
+  </label>
+
+  <main class="container">
+    <!-- Visual aid pulse element -->
+    <div id="pulse" class="pulse-indicator" aria-hidden="true"></div>
+
+    <!-- Timer output -->
+    <h3 id="timer" class="timer-output" aria-live="polite"></h3>
+
+    <!-- Info text output -->
+    <pre id="info" class="info-output" aria-live="polite">Mode: Random | Current Weights: 1, 1, 1, 1</pre>
+
+    <!-- Interactive Plot Area -->
+    <div id="plot-wrapper" class="plot-wrapper" role="button" tabindex="0" aria-label="Interactive rhythm plot. Click to grow the circle.">
+      <svg id="plot-svg" viewBox="-60 -54 114 112" class="plot-svg">
+        <defs>
+          <clipPath id="plot-clip">
+            <rect x="-50" y="-50" width="100" height="100"></rect>
+          </clipPath>
+        </defs>
+
+        <!-- Plot Area Background Box -->
+        <rect x="-50" y="-50" width="100" height="100" fill="#ffffff" stroke="#000000" stroke-width="0.8"></rect>
+
+        <!-- X-Axis Ticks & Labels: -40, -20, 0, 20, 40 -->
+        <g class="axis-ticks" stroke="#000000" stroke-width="0.6">
+          <line x1="-40" y1="50" x2="-40" y2="52"></line>
+          <line x1="-20" y1="50" x2="-20" y2="52"></line>
+          <line x1="0"   y1="50" x2="0"   y2="52"></line>
+          <line x1="20"  y1="50" x2="20"  y2="52"></line>
+          <line x1="40"  y1="50" x2="40"  y2="52"></line>
+        </g>
+        <g class="axis-labels" font-size="3.5" font-family="sans-serif" fill="#000000" text-anchor="middle">
+          <text x="-40" y="56">-40</text>
+          <text x="-20" y="56">-20</text>
+          <text x="0"   y="56">0</text>
+          <text x="20"  y="56">20</text>
+          <text x="40"  y="56">40</text>
+        </g>
+
+        <!-- Y-Axis Ticks & Labels: 40, 20, 0, -20, -40 (Cartesian coordinates) -->
+        <g class="axis-ticks" stroke="#000000" stroke-width="0.6">
+          <line x1="-50" y1="-40" x2="-52" y2="-40"></line>
+          <line x1="-50" y1="-20" x2="-52" y2="-20"></line>
+          <line x1="-50" y1="0"   x2="-52" y2="0"></line>
+          <line x1="-50" y1="20"  x2="-52" y2="20"></line>
+          <line x1="-50" y1="40"  x2="-52" y2="40"></line>
+        </g>
+        <g class="axis-labels" font-size="3.5" font-family="sans-serif" fill="#000000" text-anchor="end">
+          <text x="-53.5" y="-38.8">40</text>
+          <text x="-53.5" y="-18.8">20</text>
+          <text x="-53.5" y="1.2">0</text>
+          <text x="-53.5" y="21.2">-20</text>
+          <text x="-53.5" y="41.2">-40</text>
+        </g>
+
+        <!-- Dynamic Circle (Clipped to [-50, 50] x [-50, 50]) -->
+        <g clip-path="url(#plot-clip)">
+          <circle id="target-circle" cx="0" cy="0" r="1" fill="red" stroke="#000000" stroke-width="0.8"></circle>
+        </g>
+      </svg>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
